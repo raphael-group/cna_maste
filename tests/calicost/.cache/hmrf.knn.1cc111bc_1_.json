@@ -1,0 +1,27 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "1cc111bc2e7d63a8a9269d0be81677f6a76f9a6adeac202efb1f3ab2db50a895",
+  "e725332f36c4810d27cd83597355e88f63b963a91282348915377112f5937fff",
+  "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+ ],
+ "outputs": [
+  {
+   "dtype": "<f8",
+   "shape": [
+    81,
+    81
+   ],
+   "zlib": "eNrt1kENACAMBMFzhn83SCBooI+SzgjgtbmSXHulRNU7zPbakQ7p1KMusY/oUZfoET3qED2CHvHvQ496xL1Fh3rEPoIeca9Bj+gR9IgeoUc/esQ+okM9okd0qUfsI3rUI/rWN3pEjzpEj+jRvcY+gn3EPoIe0RE61CP2EfSIew16RI+gR3SpR/SIHvXIL13qET2iQz2iR3SpR+wjetQjutY1/p/oUY/oET36P2IfwT6iR3CvsWvoUY+4t6BH3Guwj9hH0CN61CN6RId6RI/oUY/4P6JD+4h9BD0y6V4fpqm/vw=="
+  },
+  {
+   "dtype": "<f8",
+   "shape": [
+    81,
+    81
+   ],
+   "zlib": "eNrt20tuAjEQRdHeGfvfDUtAjAGBcFl+ZZ87ySgtpByVP3Su69n9dr39+W+jz6n6HOoVh9rJ46ffq3ItHkfcVM9Z8Wg+ikceZb0Wjzyq2uE3j1WfS3v4WuWg+j5TvfyNzqW0+3CdOQ95VKJPHmU+yj6SRznPiEcetdrjbg557uVpts+U56jXfKs+p3uvm8cd1m0ezUfzUeYjjzzyqF6eV98/8mg+mo9a7TH1fWweleipeh+hszzO+t6QKx4T9o8c8pg0H+0neUyaj/zxaD6KR/7kPKO5jlavh6nvz/LcyyPfsl7bP2ru351HzVifzUd1dsijeBSPPIpH9XaVcr5OOferh8dZHrjkMXHe8sjjyufwKB5lveZRPMp6zaPMRx5P9rj7fTjPvdfr3Tzx2NNz6v7RfOSRR/HIo/I8+n9XHs1H8Wg+iked6XHUjfVala7S9qPq5W90nvj+Wiecr3k0J/9xwKOS5iWPsl6LTx7lfK2z1tnUdV+9Xa726R6bx4S5xKEq/PAoHsXjb/54lPkoHs1H8ai9Ha5+H/vV4QO33584"
+  }
+ ],
+ "date": "2026-10-31"
+}

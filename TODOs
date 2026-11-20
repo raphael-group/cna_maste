@@ -1,0 +1,11 @@
+DEPRECATE cnamaste.perf
+FIELD ARGMAX in clone, not clones_int.
+Z in cnv_seglevel in the copy state -> k, not logmu_shift.
+segmentation.tsv.gz is defined on the input reference gene set?  README -> per reference gene, segmentations and the phase.
+`cnv_<ploidy>_perstate.tsv` deprecate A,B; logmu, p only.
+| `rdrbaf_final_nstates7_smp.npz` | The final RDR-BAF fit: state parameters, `log_gamma`, `pred_cnv`, assignments, `total_llf` | ... validate
+no refernce to sandbox, e.g. in the README or pytest markers.
+
+add tests for potts solvers for the opengm solvers, calicost and cnamaste. 
+
+pyproject.toml authors, add runpeng luo.

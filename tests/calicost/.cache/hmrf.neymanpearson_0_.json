@@ -1,0 +1,20 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "201b96483876473b54ec73ab96b0d2b43cd05b0df229623b624280ba0fc99aa0",
+  "6aaca0e656e879a161f1b80905a8e947044310894f96e16e950e8cb610c8d6c4",
+  "5bbddfeffc7ba40585d201a4f7997ffc809f58175f8a17c6b4797e9a26ba7956",
+  "3b08c3bc05dc745aa876f9d0a49f420aece8481d6480d31d5670b91dc058adb6",
+  "205b7d744e0a5392918c87acb15310539044e0565c7f5e251cfc991db2861df5"
+ ],
+ "outputs": [
+  {
+   "dtype": "<i8",
+   "shape": [
+    64
+   ],
+   "zlib": "eNpjYBgFAwkYB5gGAAZAABE="
+  }
+ ],
+ "date": "2026-11-02"
+}

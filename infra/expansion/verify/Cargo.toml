@@ -1,0 +1,22 @@
+[package]
+name = "cnamaste_expansion_verify"
+version = "0.1.0"
+edition = "2021"
+description = "Tests and benchmarks of cnamaste_expansion, apart so the library builds with no dependency and offline."
+license = "MIT"
+publish = false
+
+[dependencies]
+cnamaste_expansion = { path = ".." }
+
+[dev-dependencies]
+criterion = "0.8.2"
+proptest = "1.12.0"
+
+[[bench]]
+name = "expansion"
+harness = false
+
+[[bench]]
+name = "trws"
+harness = false

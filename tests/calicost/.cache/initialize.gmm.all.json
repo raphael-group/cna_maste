@@ -1,0 +1,15 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "06f55afb5b546f160edcdf4144b067542ea5d174e7eb034571a5150fb0dd998b",
+  "2b23c2778caa20348d381856489fdc56cb7fc4d3f098ec7946e0d5e4434c9c8c",
+  "409f5377edee72d6f186dc917db47cc42cd3450c3767140d435a0f88def15e7a",
+  "4eae7befb4dc482c182619dd162a7b701afd1a29e06f667baa0ae21f1449f6bb",
+  "e021afd9bdb7e88bafc8e6fdcfd991ea436ee68b57477af0c98184083e2a06a6"
+ ],
+ "raised": [
+  "ValueError",
+  "Input X contains infinity or a value too large for dtype('float64')."
+ ],
+ "date": "2026-11-01"
+}

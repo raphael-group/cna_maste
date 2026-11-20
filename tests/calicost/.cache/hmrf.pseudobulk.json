@@ -1,0 +1,37 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "da5c473ce21ec826624ea2ec124a8756f30185f92645c8c098833d1060a4fddf",
+  "c0e277fedb979216f427cf96da7ed2a4276867b6dc0658b392802d2c25e87335",
+  "d6f536ea5a08eff4ab83ffca6b70bb27bb0048e66ebd5858354e6baaac2ad23b",
+  "3b08c3bc05dc745aa876f9d0a49f420aece8481d6480d31d5670b91dc058adb6"
+ ],
+ "outputs": [
+  {
+   "dtype": "<f8",
+   "shape": [
+    40,
+    2,
+    3
+   ],
+   "zlib": "eNqNlEFPg0AQhffIkQOHPXAwhBhjCGml2FK1bAsmbT3oT9qf7E8w6gzJfmFFLi+bfczOm3kzxnx/t+4HTC94EjSCFucaPKf38t2AvxHc/aI/yvmzn8cd4neIn+P/Rs6jxD/hnjpU717wQTBx8/FXch6gV+8tzlWo1xxQD8VUsIXe+p96tZ6vf+fjHfJQ/ZlgGeblWfca9WF/VeezYIE6FsjvCXXM0B8L/Qf48x7vZ5H4e+RhF/h9hJcgnxcX/mfxTor4HepfRHQqfwt+vhBffVkhrwzxU/jsEZjO8yd/VZiXGP8C/6zBg15/hQ+36C99fUU9mkg983AvTLwm4gPt8xk6V5xfMz8vJfqWRPI/I267sB86zMua/QVf3vdvmJcMqP1y2G819sS0R03IG+AfC9302xjZPwb/ST38O+pTIm4S7h33Af9wXlTvAF/fYa8hvtbHjxH/p/P7cOK30JtP8b8Aqd91Xw=="
+  },
+  {
+   "dtype": "<f8",
+   "shape": [
+    40,
+    3
+   ],
+   "zlib": "eNp1k30s1AEcxrciJLu1k7K6os68n5f73Qv38nt+J6c0Lxt5jQ0j2+GPQ2W9kLXbhaWXdSEqV/SiKdQ0GuWKs2J3Ny0N42hjOBs7FGNZ///+/e7ZZ9/v8zxfFnmujMqRoDyvdmT1lQTn4/e26JeCUdAfGvn+FInUmGKm8Q4J4XyMtsSDgG/KcUZvvwTMIV9z/D4pdKNtjEU/LiKuzXBHbQDYR2kifADryiPFp0YCbKbH14qDMmQdVqaaKBmsWmNPeJQAtYbq13+7CGT0KjsUCwScpjZIXocPjJXyTRceoBZqjqynALEX5YaZSQKFgY8XkxtD8L3ZnEBOhKDPq/RjzvVAvKvv9Iw9IYKLt+/N7kwRhKGsGGtJEC3npyks/MxvEUL+3yPGsizvkGgtCPZszbLOVgKLo51ec1oCB0OmvOltMLaUhO3CFh/Du8zbTVwBFM4/1ifq/RHwRdWWdUwIFbuGrUsUoo7TF9e+P4CWv5hYcCG/gQ+xNnpFbuKj3VHFeeBGz3G6tXEvN12AjKxCR9v7Aniw2J/ZrhxaPR2fLq/Q4rkGsacUz/x7LB35UrinJRcxFFzMWhxG9CfFGIycbh1ViRE9wLyaTgSjYn6zYFhFQV2h0eveUBg/MHZ77C6f1mcWTa/o5mktRd2COSm+LU3vUQaSGMt+IUmY5dLmQtc3Ov95nIU4+0syrF22yQ16KkNri5u6alBAuz+dPqn2Zd/ZbMCUO6ltrgRaNy2E3VEelqqeDPQOhsE6ZOO8vR4G0c733Liy01f36STleDhczd6/1Aw5RBuzDx28xGD+Sec7dVIwdk1GF05RENaVr24b+Ng9UfO8OoECmRIlcy6lUHaH6/chnt7nfx31m18="
+  },
+  {
+   "dtype": "<f8",
+   "shape": [
+    40,
+    3
+   ],
+   "zlib": "eNqFk7EKgDAMRPsJDg4ODiWUEkop6hf4/18lSuvw4KjLkTReL8k1hPcr9wchddw7jnzraMDccUPcwGPgd9SPOOLegQvqI/jIY4gL/qNO8pzQnyc8jvok9GbRF/tfoK8I3jTpdxXzNsHDuao9VvAnoZO+idCzIV+FD12cV+FL7mHcc4g9XpgH5+9iPuq9uOiXPqkibxM/t5//AZ3zLvo="
+  }
+ ],
+ "date": "2026-11-02"
+}

@@ -1,0 +1,154 @@
+{
+ "name": "dev_tree_easy",
+ "realization": 0,
+ "hash": "e4bbe03f",
+ "clones": [
+  "normal",
+  "clone_0",
+  "clone_1",
+  "clone_2"
+ ],
+ "simulation": {
+  "name": "dev_tree_easy",
+  "seed": 0,
+  "realizations": 5,
+  "vary": "counts",
+  "baseline": "sim/reference/normal_baseline.txt.gz",
+  "coverage": "sim/reference/normal_coverage.toml",
+  "snps": "sim/easy_2d4ce9a9/unique_snp_ids.npy",
+  "chromosome_lengths": [
+   248956422,
+   242193529,
+   198295559,
+   190214555,
+   181538259,
+   170805979,
+   159345973,
+   145138636,
+   138394717,
+   133797422,
+   135086622,
+   133275309,
+   114364328,
+   107043718,
+   101991189,
+   90338345,
+   83257441,
+   80373285,
+   58617616,
+   64444167,
+   46709983,
+   50818468
+  ],
+  "array": [
+   "hex",
+   60,
+   50
+  ],
+  "barcodes": [
+   16,
+   "-1",
+   4
+  ],
+  "model": {
+   "admixture": "cell",
+   "normal_frac": 0.14,
+   "dirichlet_concentration": 100.0,
+   "bb_overdispersion": 0.01,
+   "snp_dispersion": 1.0,
+   "counts_sampler": "urn"
+  },
+  "cna": {
+   "mode": "felsenstein",
+   "n_clones": 3,
+   "shared": 1,
+   "unique": 2,
+   "trunk": 1,
+   "per_leaf": 2,
+   "per_internal": 0,
+   "expected_cnas": 7,
+   "loh": "irreversible",
+   "states": [
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "length": {
+    "law": "lognormal",
+    "size": null,
+    "mean": 50000000.0,
+    "median": null,
+    "sigma": 0.541,
+    "minimum": 1000000.0
+   },
+   "nodes": [],
+   "events": []
+  },
+  "switch_errors": true,
+  "nu": 1.0,
+  "unit": "centimorgan",
+  "layout": {
+   "shape": "polygons",
+   "overlap": false,
+   "radius": 0.4,
+   "vertices": 6,
+   "jitter": 0.2,
+   "max_placements": 1000,
+   "unplaced": "refuse",
+   "normal_share": null,
+   "size": null,
+   "edge": null
+  },
+  "slices": [
+   {
+    "clones": [
+     "clone_0",
+     "clone_1"
+    ],
+    "offset": [
+     0.0,
+     0.0
+    ],
+    "regions": []
+   },
+   {
+    "clones": [
+     "clone_1",
+     "clone_2"
+    ],
+    "offset": [
+     0.5,
+     0.0
+    ],
+    "regions": []
+   }
+  ],
+  "config_base": "zenodo_sim_config.yaml",
+  "config": {}
+ }
+}

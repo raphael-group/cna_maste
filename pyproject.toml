@@ -1,0 +1,423 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cnamaste"
+version = "0.1.0"
+description = "Allele-specific copy-number aberrations and tumour clones from spatial transcriptomics"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "M. J. Wilson" }]
+requires-python = ">=3.12.2"
+dependencies = [
+    "anndata>=0.8.0",
+    "calicost",
+    "jax>=0.11.2",
+    "matplotlib",
+    "numba>=0.61.0",
+    "numpy>=1.26.0",
+    "pandas>=2.0.0,<3",
+    "polars>=1.30.0",
+    "pyarrow>=26.0.0",
+    "pybedtools",
+    "pyranges",
+    "pysam",
+    "pyyaml>=6.0",
+    "rich==14.0.0",
+    "scanpy>=1.9.0",
+    "scikit-learn",
+    "scipy",
+    "seaborn",
+]
+
+[dependency-groups]
+dev = [
+    "dask>=2025.1.0",
+    "optax>=0.2.4",
+    "pytest>=9.0.3",
+    "pytest-benchmark>=5.1",
+    "pytest-cov>=7.0",
+    "pytest-xdist>=3.6",
+    "ruff==0.16.8",
+]
+# NB `cnamaste.sandbox.luo`'s plotting, pinned under `[tool.uv.sources]`: `uv sync --group luo`.
+luo = ["cnplot"]
+
+[project.scripts]
+run_cnamaste = "cnamaste.scripts.run_cnamaste:main"
+run_cnamaste_decode = "cnamaste.scripts.run_cnamaste_decode:main"
+run_cnamaste_plot = "cnamaste.scripts.run_cnamaste_plot:main"
+run_sim_qa = "cnamaste.scripts.run_sim_qa:main"
+run_sim_gen = "cnamaste.scripts.run_sim_gen:main"
+run_sim_normal = "cnamaste.scripts.run_sim_normal:main"
+run_sim_plot = "cnamaste.scripts.run_sim_plot:main"
+run_sim_study = "cnamaste.scripts.run_sim_study:main"
+run_cnamaste_he = "cnamaste.sandbox.he.scripts.run_cnamaste_he:main"
+
+[tool.setuptools]
+package-dir = { "" = "python" }
+packages = [
+    "cnamaste", "cnamaste.external", "cnamaste.scripts", "cnamaste.calicost", "cnamaste.config", "cnamaste.plot",
+    "cnamaste.platforms", "cnamaste.qa", "cnamaste.sim", "cnamaste.initialize", "cnamaste.hmm", "cnamaste.sandbox",
+    "cnamaste.sandbox.he", "cnamaste.sandbox.he.scripts",
+]
+
+[tool.setuptools.package-data]
+"cnamaste.config" = ["config_defaults.yaml"]
+
+[tool.setuptools.exclude-package-data]
+cnamaste = ["sandbox/*", "sandbox/**/*"]
+
+[tool.uv]
+constraint-dependencies = ["anndata==0.13.3.post0", "numba==0.67.0", "polars==1.44.2"]
+
+[tool.uv.sources]
+calicost = { git = "https://github.com/raphael-group/CalicoST", rev = "c1abcae" }
+# NB cnplot at cc5bbd7 (0.1.1b2); not on PyPI.
+cnplot = { git = "https://github.com/raphael-group/cnplot", rev = "cc5bbd7" }
+
+[tool.cnamaste.figures]
+family = "serif"
+font = "STIXGeneral"
+mathtext = "stix"
+font_size = 8.0
+
+[tool.cnamaste.capture]
+max_file_bytes = 15_000_000
+
+# NB `cnamaste.sim`'s simulations: the base table states every key; another table `extends` it and states what differs.
+[tool.cnamaste.sim.calicost_grch38]
+[tool.cnamaste.sim.calicost_grch38.sample]
+seed = 0
+realizations = 1
+vary = "counts"
+
+[tool.cnamaste.sim.calicost_grch38.reference]
+baseline = "sim/reference/normal_baseline.txt.gz"
+coverage = "sim/reference/normal_coverage.toml"
+snps = "sim/easy_2d4ce9a9/unique_snp_ids.npy"
+
+[tool.cnamaste.sim.calicost_grch38.genome]
+# NB GRCh38 autosomes chr1-22.
+chromosome_lengths = [
+    248956422, 242193529, 198295559, 190214555, 181538259, 170805979, 159345973, 145138636, 138394717, 133797422,
+    135086622, 133275309, 114364328, 107043718, 101991189, 90338345, 83257441, 80373285, 58617616, 64444167, 46709983,
+    50818468,
+]
+
+[tool.cnamaste.sim.calicost_grch38.array]
+kind = "hex"
+rows = 25
+columns = 25
+
+[tool.cnamaste.sim.calicost_grch38.barcodes]
+# NB Visium 16-mers with `-1`, one whitelist for every slice; sample ids of 8 hexadecimal digits.
+length = 16
+suffix = "-1"
+sample_id_bytes = 4
+
+[tool.cnamaste.sim.calicost_grch38.model]
+admixture = "read"
+normal_frac = 0.0
+dirichlet_concentration = 100.0
+bb_overdispersion = 0.0
+snp_dispersion = 1.0
+counts_sampler = "gamma"
+
+[tool.cnamaste.sim.calicost_grch38.cna]
+# NB CalicoST easy, numcnas1.2: 3 tumour clones, 1 event shared by all and 2 unique to each.
+mode = "shared.unique"
+n_clones = 3
+shared = 1
+unique = 2
+trunk = 1
+per_leaf = 2
+per_internal = 0
+expected_cnas = 7
+loh = "reversible"
+states = [[1, 0], [0, 1], [2, 1], [1, 2], [3, 1], [2, 2], [0, 2]]
+# NB `mode = "explicit"` states the tree as [[cna.node]] (name, parent) and its events as [[cna.event]].
+node = []
+event = []
+
+[tool.cnamaste.sim.calicost_grch38.cna.length]
+law = "fixed"
+size = 5e7
+
+[tool.cnamaste.sim.calicost_grch38.phasing]
+switch_errors = false
+nu = 1.0
+unit = "centimorgan"
+
+[tool.cnamaste.sim.calicost_grch38.layout]
+shape = "polygons"
+overlap = false
+radius = 0.3
+vertices = 6
+jitter = 0.2
+max_placements = 1000
+unplaced = "refuse"
+
+[tool.cnamaste.sim.calicost_grch38.config]
+# NB a realization's config.yaml: this run configuration, [config.<section>] tables laid over it.
+base = "zenodo_sim_config.yaml"
+
+[[tool.cnamaste.sim.calicost_grch38.slice]]
+offset = [0.0, 0.0]
+clones = ["clone_0", "clone_1", "clone_2"]
+
+# NB dev_tree easy r0 (`e4bbe03f`): three clones on a Felsenstein tree, two slices sharing clone_1.
+[tool.cnamaste.sim.dev_tree_easy]
+extends = "calicost_grch38"
+
+[tool.cnamaste.sim.dev_tree_easy.sample]
+realizations = 5
+
+[tool.cnamaste.sim.dev_tree_easy.array]
+rows = 60
+columns = 50
+
+[tool.cnamaste.sim.dev_tree_easy.model]
+admixture = "cell"
+normal_frac = 0.14
+bb_overdispersion = 0.01
+counts_sampler = "urn"
+
+[tool.cnamaste.sim.dev_tree_easy.cna]
+mode = "felsenstein"
+loh = "irreversible"
+
+[tool.cnamaste.sim.dev_tree_easy.cna.length]
+law = "lognormal"
+mean = 5e7
+sigma = 0.541
+minimum = 1e6
+
+[tool.cnamaste.sim.dev_tree_easy.phasing]
+switch_errors = true
+
+[tool.cnamaste.sim.dev_tree_easy.layout]
+radius = 0.4
+
+[[tool.cnamaste.sim.dev_tree_easy.slice]]
+offset = [0.0, 0.0]
+clones = ["clone_0", "clone_1"]
+
+[[tool.cnamaste.sim.dev_tree_easy.slice]]
+offset = [0.5, 0.0]
+clones = ["clone_1", "clone_2"]
+
+# NB explicit truth: two clones below a founder on a rectangular layout, each realization its own layout.
+[tool.cnamaste.sim.explicit_easy]
+extends = "calicost_grch38"
+
+[tool.cnamaste.sim.explicit_easy.sample]
+realizations = 3
+vary = "truth"
+
+[tool.cnamaste.sim.explicit_easy.array]
+rows = 50
+columns = 50
+
+[tool.cnamaste.sim.explicit_easy.cna]
+mode = "explicit"
+n_clones = 2
+loh = "irreversible"
+
+[[tool.cnamaste.sim.explicit_easy.cna.node]]
+name = "founder"
+parent = "normal"
+
+[[tool.cnamaste.sim.explicit_easy.cna.node]]
+name = "clone_0"
+parent = "founder"
+
+[[tool.cnamaste.sim.explicit_easy.cna.node]]
+name = "clone_1"
+parent = "founder"
+
+[[tool.cnamaste.sim.explicit_easy.cna.event]]
+node = "founder"
+chr = 1
+start = 10_000_000
+length = 100_000_000
+A = 2
+B = 1
+
+[[tool.cnamaste.sim.explicit_easy.cna.event]]
+node = "clone_0"
+chr = 1
+start = 30_000_000
+length = 40_000_000
+A = 3
+B = 1
+
+[[tool.cnamaste.sim.explicit_easy.cna.event]]
+node = "clone_0"
+chr = 3
+start = 20_000_000
+length = 80_000_000
+A = 1
+B = 0
+
+[[tool.cnamaste.sim.explicit_easy.cna.event]]
+node = "clone_1"
+chr = 5
+start = 10_000_000
+length = 100_000_000
+A = 2
+B = 2
+
+[[tool.cnamaste.sim.explicit_easy.cna.event]]
+node = "clone_1"
+chr = 7
+start = 10_000_000
+length = 80_000_000
+A = 0
+B = 2
+
+[tool.cnamaste.sim.explicit_easy.layout]
+shape = "rectangles"
+normal_share = 0.25
+
+[[tool.cnamaste.sim.explicit_easy.slice]]
+offset = [0.0, 0.0]
+clones = ["clone_0", "clone_1"]
+
+# NB study15 r0 (`784e4ebf`): a drawn clone count, drawn radii, dropped clones, a tree with every edge's events.
+[tool.cnamaste.sim.study15]
+extends = "calicost_grch38"
+
+[tool.cnamaste.sim.study15.sample]
+vary = "truth"
+
+[tool.cnamaste.sim.study15.array]
+rows = 60
+columns = 50
+
+[tool.cnamaste.sim.study15.model]
+admixture = "cell"
+normal_frac = 0.14
+bb_overdispersion = 0.01
+counts_sampler = "urn"
+
+[tool.cnamaste.sim.study15.cna]
+mode = "tree"
+n_clones = { law = "uniform", minimum = 2, maximum = 4 }
+trunk = 1
+per_leaf = 4
+per_internal = 1
+loh = "irreversible"
+# NB every (A, B) to a total of 6 but (1, 1) and (0, 0).
+states = [
+    [0, 1], [1, 0], [0, 2], [2, 0], [0, 3], [1, 2], [2, 1], [3, 0], [0, 4], [1, 3], [2, 2], [3, 1], [4, 0], [0, 5],
+    [1, 4], [2, 3], [3, 2], [4, 1], [5, 0], [0, 6], [1, 5], [2, 4], [3, 3], [4, 2], [5, 1], [6, 0],
+]
+
+[tool.cnamaste.sim.study15.cna.length]
+law = "lognormal"
+median = 1.5e7
+sigma = 0.541
+minimum = 1e6
+
+[tool.cnamaste.sim.study15.phasing]
+switch_errors = true
+
+[tool.cnamaste.sim.study15.layout]
+radius = { law = "normal", mean = 0.3, sd = 0.1, minimum = 0.05 }
+unplaced = "drop"
+
+[[tool.cnamaste.sim.study15.slice]]
+offset = [0.0, 0.0]
+clones = "all"
+
+# NB hd_tree (T- #190): one Visium HD slice of 70 x 70 square bins, a tree of exactly `cnas` CNAs.
+[tool.cnamaste.sim.hd_tree]
+extends = "study15"
+
+[tool.cnamaste.sim.hd_tree.sample]
+realizations = 5
+
+[tool.cnamaste.sim.hd_tree.array]
+kind = "square"
+rows = 70
+columns = 70
+
+[tool.cnamaste.sim.hd_tree.cna]
+cnas = 9
+
+[tool.cnamaste.sim.hd_tree.cna.length]
+law = "fixed"
+size = 3e7
+
+[tool.cnamaste.sim.hd_tree.layout]
+# NB radius 0.25 x sqrt(2), twice the area; 200 draws per k = 2, 3, 4: placed k = 2 always, 3 in 197 of 200, 4 in 92
+#    (106 keep 3); normal's share min 0.39, 0.26, 0.15, median 0.56, 0.41, 0.35. A dropped clone takes no CNAs.
+shape = "polygons"
+radius = 0.3536
+unplaced = "drop"
+
+[tool.cnamaste.sim.hd_tree.config.hmrf]
+lattice_type = "square"
+coordination_num = 8
+# NB the default 1.1; 1.21 (+10%) is T- #196's Study 3 arm.
+spatial_weight = 1.1
+
+[tool.cnamaste.sim.hd_tree.config.phasing]
+# NB 5 x 5 = 25 start clones, about 196 bins each at 4,900 bins, above hmrf.min_spots_per_clone 100.
+npart_phasing = 5
+# NB CalicoST's grid; the scored median-bisection start (n_start_candidates 32) is T- #196's last arm.
+clone_init_type = "rectangle"
+n_start_candidates = 1
+
+[tool.cnamaste.sim.hd_tree.config.ab_decode]
+# NB clones merge into one integer clone only where their (A, B) agree on every bin.
+int_clone_agreement = 1.0
+# NB the decoder's lattice to totals of 8; the draw plants totals of 6 at most.
+max_total_copy = 8
+max_allele_copy = 8
+t = 0.999
+nonbalance_min_baf_dist = 0.1
+
+# NB a study: a grid of `[cna] cnas` and fixed CNA lengths over `simulation`, one simulation per pair.
+[tool.cnamaste.study.hd_tree]
+simulation = "hd_tree"
+cnas = [3, 6, 9]
+length_mb = [40, 30, 20]
+realizations = 5
+seed = 0
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "end2end: runs run_cnamaste for real on committed sims, directly or through batch_zenodo_run.sh; off unless asked for by -m",
+    "benchmark: times an evaluator or solver on recorded or planted inputs (tests/test_benchmarks.py, tests/test_label_solvers.py); off unless asked for by -m",
+    "fixture_stage: parametrized by a staged fixture or a sample drawn from one (conftest.py)",
+    "calicost: compares against CalicoST c1abcae as referee, its output recorded in tests/calicost/.cache; off unless asked for by -m",
+    "calicost_departure: a stated departure from CalicoST, xfail(strict=True) (tests/calicost); off unless asked for by -m",
+    "slow: over 5 s serial, measured; in the standard tier unless deselected",
+    "very_slow: over 20 s serial, measured, and slow; in the standard tier unless deselected",
+    "stress: runs run_cnamaste on tiled CalicoST easy (sim.tile), 3,000 to 48,000 spots, timed per stage; off unless asked for by -m",
+    "cache: replays a capture's recorded calls, compiling numba's and JAX's on-disk caches for a run's own argument types; pytest -m cache before a timed run",
+    "oracle: one inference step alone, the others' answers planted (tests/test_oracle.py), O4 real run_cnamaste runs; off unless asked for by -m",
+]
+
+addopts = "--strict-markers --import-mode=importlib -n auto -m 'not end2end and not benchmark and not stress and not calicost and not calicost_departure and not oracle'"
+
+pythonpath = [".", "tests", "tests/calicost"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = [".venv"]
+src = ["python", "tests", "tests/calicost"]
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-third-party = ["calicost"]
+
+[tool.coverage.run]
+source = ["cnamaste"]

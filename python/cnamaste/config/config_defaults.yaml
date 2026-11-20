@@ -1,0 +1,210 @@
+# The default of every key a run reads; a key that is not here is refused. `null` is a key with no default.
+# NB PyYAML reads YAML 1.1: a float takes a decimal point, so 1.0e-4, not 1e-4, which reads as text.
+
+paths:
+  sample_sheet : null
+  output_dir : null
+
+preprocessing:
+  normalidx_file : null
+
+visium:
+  filtered_feature_name : filtered_feature_bc_matrix
+
+he:
+  # NB each spot's class from the slide's grayscale, one class per percentile band (he.get_he_image).
+  n_components : 4
+  # NB the classes split each rectangle of the phasing's initial partition.
+  apply_to_initial_partition : true
+  # NB the image the H&E network reads (cnamaste.sandbox.he, run_cnamaste_he): Space Ranger's hires or lowres.
+  resolution : hires
+
+annotation:
+  clone_label : null
+
+run:
+  pause : false
+  # NB true adds combined.pdf's field_argmax panel, the clones with no spatial prior.
+  plot_field_argmax : false
+  # NB reference.get_reference_genes reads the hgTables annotation whatever this is (TODO HACK there).
+  legacy : false
+
+references:
+  geneticmap_file : null
+  hgtable_file : null
+  # NB the GTF reference.get_reference_genes reads where run.legacy is honoured (TODO HACK there).
+  annotation_file : null
+  filtergenelist_file : null
+  filterregion_file : null
+
+quality:
+  phasing_min_snp_umis : 50
+  spot_min_snp_umis : 50
+  min_percent_expressed_spots : 0.005
+  secondary_min_umi : 0
+  secondary_min_snp_umi : 200
+  secondary_min_normal_umi : 100
+  max_binlength : 5000000
+  local_outlier_filter : true
+  # NB read-depth UMIs a gene may total; above it thinned binomially per spot, SNP counts kept. null: no cap.
+  max_umi_per_gene : null
+  filter_normal_diffexp : false
+  normal_allele_specific_confidence : (0.01, 0.99)
+  min_normal_count_perbin : 100
+  baf:
+    # NB the BAF deadband about 1/2 that picks the most normal-like clone (normal_spot.filter_normal_spots).
+    eps : 0.05
+
+phasing:
+  run : true
+  nu : 1.0
+  logphase_shift : -2.0
+  npart_phasing : 2
+  # NB the phasing start, one of CLONE_INIT_TYPES.
+  clone_init_type : rectangle
+  # NB median_bisection's candidate starts, one seeded stream each, the one of the strongest BAF distinction kept.
+  n_start_candidates : 1
+  baf_change_threshold : 0.05
+  min_new_segment_size : 10
+  min_prob : 1.0e-20
+  baf:
+    # NB the BAF band about 1/2 in which a clone casts no phase vote (phasing.get_phase_indicator).
+    eps : 0.1
+
+hmrf:
+  min_spots_per_clone : 100
+  min_avgumi_per_clone : 10
+  max_iter_outer : 25
+  # NB settle at ARI >= assignment_ari_tolerance to the last labelling; at 1.0 a spot alternating between two labels
+  #    runs to max_iter_outer (T- #200), 0.99 stops it.
+  assignment_ari_tolerance : 1.0
+  # NB each clone's read depth as base mu / Z_c, Z_c its library normalizer; false is Z_c = 1.
+  apply_logmu_shift : true
+  # NB each bin's state weights in log Z_c, one of LOGMU_SHIFT_TYPES: argmax, the previous fit's argmax path, held
+  #    through the fit; posterior, the latest E step's posteriors, held through each M step.
+  logmu_shift_type : argmax
+  spatial_weight : 1.1 # NB clone ARI 0.9882 easy (2d4ce9a9), 0.9698 hard (8797710b) at triangular, k = 6.
+  # NB one of LABEL_SOLVERS; expansion needs its library (infra/expansion/build_expansion.sh), OpenGM's theirs
+  #    (infra/opengm/build_opengm.sh).
+  label_solver : expansion
+  # NB the labelling each solver starts from, one of LABEL_STARTS: the last iteration's, or field_argmax of the field.
+  label_start : prev_assignment
+  # NB the min cut of opengm_expansion's moves, one of OPENGM_MINCUTS.
+  opengm_mincut_solver : boykov_kolmogorov
+  # NB reductions before every label_solver but icm (potts.reduce_potts_problem), exact for a minimum: fix each spot
+  #    whose field margin exceeds its summed coupling at its field argmax; drop each clone no spot can take.
+  fix_dominant_spots : false
+  prune_dominated_labels : false
+  # NB the order opengm_expansion and expansion visit the clones, one of EXPANSION_LABEL_ORDERS.
+  expansion_label_order : index
+  # NB T- #195: false is OpenGM's expansion moves, whose auxiliary node drops a pair labelled apart off alpha; true
+  #    patches it. label_solver expansion alone: opengm_expansion is OpenGM's either way.
+  opengm_patch : true
+  # NB required: triangular for Visium's array, square for Visium HD's bins.
+  lattice_type : null
+  # NB k nearest, one of LATTICE_TYPES[lattice_type]; null is the lattice's first.
+  coordination_num : null
+  # NB false merges none; the min_spots_per_clone floor still applies.
+  merge_clones_baf : true
+  merge_clones_rdr : true
+  fixed_assignment : false
+  # NB seeds NumPy's, Python's and numba's global generators, the median bisection's streams and the rectangle split.
+  random_seed : 0
+  n_clones_rdr : 2
+  # NB the RDR refinement's split of each BAF clone, one of CLONE_INIT_TYPES.
+  rdr_clone_init_type : rectangle
+  # NB median_bisection's delta: a cut of k parts falls at the quantile (k // 2) / k + U[-delta, delta].
+  bisection_quantile_jitter : 0.1
+
+mstep:
+  # NB one of MSTEP_SOLVERS (cnamaste.mstep): scipy_bfgs, L-BFGS-B under hmm.bound_dispersions, or scipy_lbfgsb.
+  solver : scipy_bfgs
+  # NB each M step's solver iterations.
+  max_iter : 100
+  # NB end an M step at an iteration lowering the cost by at most cost_rtol |cost|, 0 for none: past it BFGS walks
+  #    log_mu's common offset under log Z_c and unoccupied states, which the cost does not see; 1e-12 stops it.
+  cost_rtol : 0.0
+
+hmm:
+  n_states : 7
+  t : 0.9999999
+  t_phaseing : 0.99999
+  # NB hmm_phased charges a phase switch only where the copy state is kept (update_phased_transmat).
+  penalize_phase_only_on_same_cnv : false
+  # NB E steps, each then an M step, to hmm.tol on mu and p (hmm_nophasing.run_optimization_pipeline); 1 with the
+  #    callback warm start is dev 91aabd7's fit; 25 fixed-objective EM rounds is T- #157's.
+  max_iter_em : 25
+  # NB in a callback M step, an E step every this many solver iterations, 0 for none (T- #157); 2 is dev 91aabd7's.
+  mstep_callback_cadence : 0
+  # NB the first M step E steps in its callback; later M steps hold their objective fixed. hmrf.logmu_shift_type
+  #    posterior takes it too; its pre-PR- #148 fit is callback_warm_start false, max_iter_em 100.
+  callback_warm_start : true
+  tol : 0.001
+  random_state : 0 # NB the seed of the calicost start's Gaussian mixture (hmm.initializer).
+  gmm_min_binom_prob : 0.05
+  gmm_max_binom_prob : 0.95
+  # NB the HMM's start, one of HMM_INITIALIZERS: lattice, or calicost (CalicoST's Gaussian mixture).
+  initializer : lattice
+  # NB a bin above this multiple of its baseline leaves the read-depth channel (hmm_nophasing.get_max_rdr_zeroed_baseline).
+  max_rdr : 5.0
+  # NB the largest integer count the emission's lgamma tables cover (hmm_emission_tabled.count_table_size).
+  count_table_extent : 1000000
+  baf:
+    # NB the BAF deadband about 1/2 (hmm_utils.get_normal_clone, hmm_nophasing.get_neutral_state).
+    eps : 0.05
+  # NB bound alpha to [1e-6, 1e3] and tau to [1e-4, 5e3].
+  bound_dispersions : false
+  # NB the normal spots' beta-binomial fit's L-BFGS-B (normal_spot.fit_normal_spot_bb).
+  em_maxiter : 1500
+  em_ftol : 1.0e-4
+
+betabinom:
+  start_params : 0.5,0.5,0.5,0.5,0.5,0.5,0.5
+  start_disp : 1000.0
+
+ab_decode:
+  # NB one of INTEGER_DECODERS; calicost reads nondiploid_rdrdist.
+  decoder : hmm_ab
+  rdr : true
+  nondiploid_rdrdist : 10.0
+  # NB hmm_ab fits each normal fraction on the bins whose pair's B-allele fraction is at least this far from 1/2.
+  nonbalance_min_baf_dist : 0.16666666666666666
+  specificity_prior : 0.5
+  # NB the BB concentration cap: flat likelihood above it.
+  max_tau : 1000000.0
+  max_total_copy : 6
+  max_allele_copy : 5
+  min_alpha : 0.0
+  fit_normal : true
+  apply_logmu_shift : true
+  recompute_logmu_shift : true
+  # NB the decoder's stay probability and clone coupling, nats per bin and disagreeing pair of tumour clones.
+  t : 0.99
+  clone_coupling : 0.25
+  assumed_ploidy : diploid
+  genome_wide_ploidy_constraint : true
+  # NB two clones are one integer clone where their decoded (A, B) agree on at least this share of bins.
+  int_clone_agreement : 0.99
+  # NB one of HMM_AB_SOLVERS, the joint decode of the tumour clones at any clone_coupling.
+  solver : icm
+  # NB score the minor allele's count and keep A >= B; the HMM's start (initialize.genomic.get_lattice_states) sets it.
+  fold : false
+  # NB refit the decode's NB dispersion and BB concentration each hard-EM round.
+  fit_dispersions : true
+  # NB the tumour clones' first normal fractions, one hard EM from each, the best joint loglike kept; the most rounds.
+  normal_fraction_starts : 0.0,0.075,0.15
+  max_iter : 40
+  # NB the most icm sweeps over the clones, and the ploidy price's bisections.
+  icm_sweeps : 20
+  ploidy_price_steps : 40
+  # NB true fits each normal fraction on the nonbalanced bins' B-allele fraction alone, the read depth dropped.
+  normal_fraction_baf_only : false
+  # NB one of CONTIG_STARTS.
+  contig_start : anchored
+  # NB a bin above this multiple of its baseline leaves the decode's read-depth channel.
+  max_rdr : 5.0
+  # NB OpenGM's min cut for the expansion solver, one of OPENGM_MINCUTS.
+  opengm_mincut_solver : boykov_kolmogorov
+  baf:
+    # NB the BAF deadband about 1/2 that picks the normal clone (hmm_utils.get_normal_clone).
+    eps : 0.05

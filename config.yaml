@@ -1,0 +1,50 @@
+paths:
+  # sample_sheet : /u/mw9568/research/repos/cnaster/zenodo_sample_sheet.tsv
+  # output_dir : /n/fs/scratch/mw9568/cnaster/zenodo/numcnas6.3_cnasize5e7_ploidy2_random6
+
+  # sample_sheet : /u/mw9568/research/repos/cnaster/htan_annotated_sample_sheet.tsv
+  # output_dir : /n/fs/scratch/mw9568/cnaster/htan/HT306P1
+
+  # NB {N3KXRGQ, CWRFYX3}
+  sample_sheet : /u/mw9568/research/repos/cna_maste/vishd_sample_sheet_n3kxrgq.tsv
+  output_dir : /n/fs/scratch/mw9568/cna_maste/vishd/N3KXRGQ
+
+  # sample_sheet : /u/mw9568/research/repos/cnamaste/vishd_sample_sheet_cwrfyx3.tsv
+  # output_dir : /n/fs/scratch/mw9568/cnamaste/vishd/CWRFYX3
+
+references:
+  geneticmap_file : /u/mw9568/research/data/references/genetic_map_GRCh38_merged.tab.gz
+  hgtable_file : /u/mw9568/research/data/references/hgTables_hg38_gencode.txt
+  annotation_file : /u/mw9568/scratch/annotation/gencode.v49.basic.annotation.gtf.gz
+  filtergenelist_file : /u/mw9568/research/data/references/ig_gene_list.txt
+  filterregion_file : /u/mw9568/research/data/references/HLA_regions.bed
+
+quality:
+  phasing_min_snp_umis : 150
+  spot_min_snp_umis : 25
+  secondary_min_snp_umi : 300
+
+phasing:
+  npart_phasing : 2
+  clone_init_type : rectangle
+
+hmrf:
+  # spatial_weight : 0.75
+  # label_solver : icm
+
+  spatial_weight : 1.0
+  label_solver : expansion
+
+  lattice_type : square
+
+hmm:
+  max_iter_em : 1
+  mstep_callback_cadence : 2
+
+ab_decode:
+  clone_coupling : 0.5
+  int_clone_agreement : 0.95
+
+# TODO HACK start_disp: 1 ->
+betabinom:
+  start_disp : 20.0

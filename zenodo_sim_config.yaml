@@ -1,0 +1,30 @@
+# Overrides of python/cnamaste/config/config_defaults.yaml: the CalicoST simulations.
+#
+# NB mirrors original @ /n/fs/ragr-data/users/congma/Datasets/CalicoST_simulation/nomixing_calicost_related/numcnas1.2_cnasize1e7_ploidy2_random0/parsed_inputs/
+#
+# WARNING output_dir should match input naming convention in zenodo_sample_sheet.tsv
+#
+# {numcnas6.3_cnasize5e7_ploidy2_random6}
+paths:
+  sample_sheet : zenodo_sample_sheet.tsv
+  output_dir : /Users/mw9568/Work/ragr/sim/nomixing_cnaster_related/numcnas3.3_cnasize5e7_ploidy2_random4/
+
+references:
+  geneticmap_file : /Users/mw9568/repos/CalicoST/GRCh38_resources/genetic_map_GRCh38_merged.tab.gz
+  hgtable_file : /Users/mw9568/repos/CalicoST/GRCh38_resources/hgTables_hg38_gencode.txt
+  annotation_file : /Users/mw9568/repos/cnaster/annotation/gencode.v49.basic.annotation.gtf.gz
+  filtergenelist_file : /Users/mw9568/repos/CalicoST/GRCh38_resources/ig_gene_list.txt
+  filterregion_file : /Users/mw9568/repos/CalicoST/GRCh38_resources/HLA_regions.bed
+
+hmrf:
+  lattice_type : triangular # the CalicoST sims' positions are Visium array indices.
+  label_solver : expansion 
+
+hmm:
+  max_iter_em : 1
+  mstep_callback_cadence : 2
+
+# phasing:
+#   npart_phasing : 5
+#   clone_init_type : rectangle
+#   n_start_candidates : 1

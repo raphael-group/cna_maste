@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc ac5fd0fb6611bd45d487a170ab1b4e2e71147350ae1635b7f09f9cc760a50711 # shrinks to (problem, start) = (Owned { n_states: 4, unary: [0.0, 3.2505342422336705, 0.0, 0.0, 3.3111469641204163, 0.0, 0.0, 1.5292865079737554, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.4128788622258304, 3.327357036613578, 2.7665328649091556, 1.8635578680068514, 3.766165578493866, 1.6518897094721647, 0.0016150852510406373, 3.648464231861226, 0.3204084457900932, 3.16541746739115], first: [0, 2, 4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3], second: [2, 3, 6, 6, 2, 3, 1, 1, 5, 5, 1, 1, 4], coupling: [0.7275413313151552, 1.2096163709672387, 1.7711841208070027, 1.109501608684191, 0.8635754192174527, 0.7918852072821526, 1.7411219179844315, 0.5595278527843212, 0.5, 0.5, 0.5886651145754447, 0.5, 1.1785403608078404] }, [1, 3, 3, 0, 2, 3, 0])

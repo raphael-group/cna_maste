@@ -1,0 +1,35 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "3b08c3bc05dc745aa876f9d0a49f420aece8481d6480d31d5670b91dc058adb6",
+  "682dc7a1607d16f453c30f834e8eb0f67c55d73b94cb708651db891cd415d010",
+  "d6f536ea5a08eff4ab83ffca6b70bb27bb0048e66ebd5858354e6baaac2ad23b",
+  "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+ ],
+ "outputs": [
+  [
+   [
+    0
+   ],
+   [
+    1,
+    2
+   ]
+  ],
+  {
+   "dtype": "<i8",
+   "shape": [
+    64
+   ],
+   "zlib": "eNpjYBjagHGUpogGABugACk="
+  },
+  {
+   "dtype": "<i8",
+   "shape": [
+    80
+   ],
+   "zlib": "eNpjYKAuYKQyzURlmnGE0dQG1I4PAF5gAFE="
+  }
+ ],
+ "date": "2026-11-02"
+}
