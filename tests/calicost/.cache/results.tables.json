@@ -1,0 +1,70 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "230525809e072d299a5a9fb6e2d34ace13dc383c7a53b759220c0abf4bb5f913",
+  "88a2d8334a0723755f52b9702667c73ba2538a5b8a98b97d996800b226405e39",
+  "085539c03773ff609a37549433af1d29aec127d3eeeebab11f38c4df394ce791",
+  "945e69cb136ea9c6cb4be2b74c40bad09dc5a0293b352974c72a6c70a6aecf60",
+  "8da66cec6858fad0b0759196810abb9d47060ab5d1dc7e6496f6cbf5b9757ed2",
+  "c656fb42a3987f0eb917a408ceab8911f8cf0acfc70fe6f6d52299df5cade952"
+ ],
+ "outputs": [
+  [
+   "g0",
+   "g1",
+   "g2",
+   "g4",
+   "g5"
+  ],
+  [
+   "clone0 A",
+   "clone0 B",
+   "clone1 A",
+   "clone1 B"
+  ],
+  {
+   "dtype": "<i8",
+   "shape": [
+    5,
+    4
+   ],
+   "zlib": "eNpjYIAAZgZUwIgmzoQmz0SiPLq5jGjizDjkAQoIAB0="
+  },
+  [
+   "CHR",
+   "START",
+   "END",
+   "clone0 A",
+   "clone0 B",
+   "clone1 A",
+   "clone1 B"
+  ],
+  {
+   "dtype": "<i8",
+   "shape": [
+    8,
+    7
+   ],
+   "zlib": "eNpjZEAFL5hR+WhcBkY0Gqb+Ajt29TDAhKYPpn4HN6o+JgL6YOoX8BOnjwmH/5hxmM+IJk7If7j04fIfAw79TDj8hx4P6PYBAJeMC6s="
+  },
+  [
+   "clone0 logmu",
+   "clone0 p",
+   "clone0 A",
+   "clone0 B",
+   "clone1 logmu",
+   "clone1 p",
+   "clone1 A",
+   "clone1 B"
+  ],
+  {
+   "dtype": "<f8",
+   "shape": [
+    3,
+    8
+   ],
+   "zlib": "eNozuJSz9T/r6f259YKxyQ932jOAAYcDhGZwMMAqDwcODz50bD7jfWP/pg3KwjWRd9D1M2CXh4EP9rqRX7o43x/fn6s5fwob1140eQ4H7PIf4DQA43g2pA=="
+  }
+ ],
+ "date": "2026-11-02"
+}

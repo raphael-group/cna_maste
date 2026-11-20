@@ -1,0 +1,15 @@
+# NB laid over the repository-root zenodo_sim_config.yaml (tests/test_zenodo_sim.py merges the two), so the root file
+#    stays the one configuration. Only the keys the root file names on its author's host are set here; paths are
+#    relative to the repository root, where the run starts. CalicoST easy (`2d4ce9a9`).
+paths:
+  sample_sheet : sim/easy_2d4ce9a9/sample_sheet.tsv
+  output_dir : output/easy_2d4ce9a9
+
+# NB CalicoST c1abcae's GRCh38_resources, committed under ref/; absent, the test reads $CNAMASTE_GRCH38 instead.
+#    annotation_file is not read: reference.get_reference_genes reads hgtable_file.
+references:
+  geneticmap_file : ref/genetic_map_GRCh38_merged.tab.gz
+  hgtable_file : ref/hgTables_hg38_gencode.txt
+  annotation_file : ref/unused.gtf.gz
+  filtergenelist_file : ref/ig_gene_list.txt
+  filterregion_file : ref/HLA_regions.bed

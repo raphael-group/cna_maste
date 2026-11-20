@@ -1,0 +1,44 @@
+*.egg-info/
+
+python/cna_maste/__pycache__                                                                                                                                                                                           
+logs/
+errors/
+zenodo_sample_sheets/
+
+opengm
+
+# NB setuptools' working tree and the artefacts it writes: `uv build` fills
+#    `build/` beside the source, and `tests/extended/test_packaging.py` builds a wheel.
+build/
+dist/
+
+# NB Python and numba caches.
+__pycache__/
+*.py[cod]
+*.nbi
+*.nbc
+
+# NB `tests/test_zenodo_sim_config.yaml`'s `paths.output_dir`, under the repository root.
+output/
+
+# NB cargo's build of `infra/expansion`.
+infra/expansion/target/
+infra/expansion/verify/target/
+
+# NB the tools' own caches.
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# NB macOS Finder's per-directory metadata.
+.DS_Store
+
+# NB scratch copies beside the benchmark's tracked inputs.
+python/cnamaste/sandbox/luo/benchmark/tmp/
+
+# NB the benchmark scripts' default `--outdir`.
+python/cnamaste/sandbox/luo/benchmark/output/
+
+# NB tiled stress samples and their timings, drawn on demand by tests/test_stress.py.
+sim/.stress/
+infra/expansion/oracle/

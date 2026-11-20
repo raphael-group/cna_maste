@@ -1,0 +1,49 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "aadbab1b943b0f05b5d8d08841d49f03fc63b1437707ad0eced4e782196b186d",
+  "d5ee70d03d8f306c1c026d70a3c28955b806b179bb635ec6b30182cd97f87ba3",
+  "8d23a75bed8f2496e3c1894450f5f0d0f74d281dea5972a853a248181aae7d1e",
+  "730e5d0d417877e9333d5fe4541e9a83c40efa7ea8854011e37ba8d9682a397d",
+  "679338cf91d0b7f7e0c76c30ce9f0e93adace57fe85c2328451f065085fc1c79",
+  "2f1871ad4d17ca2611731e965bd970e7cdc6be4f363a52ba64853538fa539d85",
+  "2a0d332e6753857b7d4c0e1fbf248fc2c296e90ad03976ece6b5d751ed331384",
+  "a1cbd4a6e82d7dd3c00caf957bb511210833e5780eac643cc341fc5036635e01",
+  "2825dd229f293062f512f48df0abedb7d2cdc71d74a9473ed52fbc2e3337fc94"
+ ],
+ "outputs": [
+  {
+   "dtype": "<f8",
+   "shape": [
+    3,
+    1
+   ],
+   "zlib": "eNqz4s0Ifffk6X6jjavCtzE029vZ/ng9qfuWPQCV2gxr"
+  },
+  {
+   "dtype": "<f8",
+   "shape": [
+    3,
+    1
+   ],
+   "zlib": "eNpjf/ra2ym0zZ4djQYAhjoKew=="
+  },
+  {
+   "dtype": "<f8",
+   "shape": [
+    3,
+    1
+   ],
+   "zlib": "eNqrFlnn/rCqxX5LTMuehveX7bu+iBR80XhgDwCaWQyx"
+  },
+  {
+   "dtype": "<f8",
+   "shape": [
+    3,
+    1
+   ],
+   "zlib": "eNrTsErbqvQw0FEDjQYAcDsJNw=="
+  }
+ ],
+ "date": "2026-11-02"
+}

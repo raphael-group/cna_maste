@@ -1,0 +1,155 @@
+{
+ "reference": {
+  "baseline": "/tmp/claude-0/-home-user/6e54c567-4463-5427-b0b0-ca4530162b71/scratchpad/port_main/sim/normal_baseline.txt.gz",
+  "coverage": "/tmp/claude-0/-home-user/6e54c567-4463-5427-b0b0-ca4530162b71/scratchpad/port_main/sim/normal_coverage.toml",
+  "snps": "/tmp/claude-0/-home-user/6e54c567-4463-5427-b0b0-ca4530162b71/scratchpad/port_main/sim/numcnas1.2_cnasize5e7_ploidy2_random0/unique_snp_ids.npy.gz",
+  "resources": "/root/.cache/uv/git-v0/checkouts/d8cfc5984356241c/c1abcae/GRCh38_resources",
+  "gene_table": "hgTables_hg38_gencode.txt",
+  "genetic_map": "genetic_map_GRCh38_merged.tab.gz",
+  "filter_genes": "ig_gene_list.txt",
+  "filter_regions": "HLA_regions.bed"
+ },
+ "genome": {
+  "chromosome_lengths": [
+   248956422,
+   242193529,
+   198295559,
+   190214555,
+   181538259,
+   170805979,
+   159345973,
+   145138636,
+   138394717,
+   133797422,
+   135086622,
+   133275309,
+   114364328,
+   107043718,
+   101991189,
+   90338345,
+   83257441,
+   80373285,
+   58617616,
+   64444167,
+   46709983,
+   50818468
+  ]
+ },
+ "array": {
+  "kind": "square",
+  "rows": 60,
+  "columns": 50
+ },
+ "barcodes": {
+  "length": 16,
+  "suffix": "-1",
+  "sample_id_bytes": 4
+ },
+ "model": {
+  "admixture": "cell",
+  "normal_frac": 0.14,
+  "dirichlet_concentration": 100.0,
+  "bb_overdispersion": 0.01,
+  "snp_dispersion": 1.0,
+  "snp_depth_follows_copies": false,
+  "counts_sampler": "urn"
+ },
+ "cna": {
+  "n_clones": 3,
+  "shared": 1,
+  "unique": 2,
+  "trunk": 1,
+  "per_leaf": 2,
+  "per_internal": 1,
+  "states": [
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    0,
+    2
+   ]
+  ],
+  "mode": "felsenstein",
+  "expected_cnas": 7,
+  "length": {
+   "law": "lognormal",
+   "mean": 50000000.0,
+   "sigma": 0.541,
+   "minimum": 1000000.0
+  },
+  "loh": "irreversible"
+ },
+ "phasing": {
+  "switch_errors": true,
+  "nu": 1.0,
+  "unit": "centimorgan"
+ },
+ "layout": {
+  "shape": "polygons",
+  "overlap": false,
+  "radius": 0.4,
+  "vertices": 6,
+  "jitter": 0.2,
+  "max_placements": 1000,
+  "unplaced": "refuse"
+ },
+ "config": {
+  "base": "/tmp/claude-0/-home-user/6e54c567-4463-5427-b0b0-ca4530162b71/scratchpad/port_main/tests/data/zenodo_sim_config.yaml",
+  "hmrf": {
+   "n_clones": 4,
+   "min_spots_per_clone": 50
+  }
+ },
+ "sample": {
+  "name": "dev_tree_easy_square",
+  "r0_hash": "23acef50",
+  "seed": 0,
+  "output": "/tmp/claude-0/-home-user/6e54c567-4463-5427-b0b0-ca4530162b71/scratchpad/port_main/sim/generated",
+  "realizations": 5,
+  "realization": 0
+ },
+ "slice": [
+  {
+   "clones": [
+    "clone_0",
+    "clone_1"
+   ],
+   "offset": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "clones": [
+    "clone_1",
+    "clone_2"
+   ],
+   "offset": [
+    0.5,
+    0.0
+   ]
+  }
+ ]
+}

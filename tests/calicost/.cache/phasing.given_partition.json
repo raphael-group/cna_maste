@@ -1,0 +1,23 @@
+{
+ "revision": "c1abcae3e3657e01e547ee4529e3b9d039221453",
+ "inputs": [
+  "887d84980ed12cb37a92d3e21f70ad0153435b6841861c057402dca904cdfe10"
+ ],
+ "outputs": [
+  {
+   "dtype": "|b1",
+   "shape": [
+    55
+   ],
+   "zlib": "eNpjYGBgZGRgZABTDCAWIyOEBRGESEMFICpBCgAC4gAc"
+  },
+  {
+   "dtype": "<i8",
+   "shape": [
+    5
+   ],
+   "zlib": "eNrjZYAAXijNAqVF0fgABaAAOA=="
+  }
+ ],
+ "date": "2026-11-02"
+}
